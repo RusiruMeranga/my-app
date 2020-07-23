@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useParams } from "react-router";
 
 const RegistrationForm = (props) => {
+  let { ids } = useParams();
   const [submit, setSubmit] = useState(false);
   const [id, setId] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -11,7 +13,7 @@ const RegistrationForm = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/members/1")
+      .get(`http://localhost:3001/members/${ids}`)
       .then((response) => {
         console.log(response.data);
         setId(response.data.id);
